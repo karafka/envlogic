@@ -34,36 +34,33 @@ module EnvLogic
   # @return [String] environment value if application name based ENV is set.
   # @return [nil] if ENV variables are not set
   def self.app_env(klass)
-    ENV[env_value(app_root)] || ENV[env_value(klass.to_s)]
+    ENV[env_value(app_name)] || ENV[env_value(klass)]
   end
 
   private
 
-  # Method defines name of ENV
-  # @return [String, Class] name of env value
+  # @param [Class, String] name Class name or application name which we should be used in ENV name
   # @example
-  #  EnvLogic.env_value(BasicModule::Karafka) # => 'BASIC_MODULE_KARAFKA_ENV'
-  #  EnvLogic.env_value('projects/facebook-api') # => 'FACEBOOK_API_ENV'
-  def self.env_value(root)
-    "#{app_name(root)}_ENV"
-  end
-
-  # Name of gem or application based on path
-  def self.app_name(root)
-    name = root
-      .to_s
-      .split('/')
-      .last
-    demodulize(name)
-  end
-
-  # @example EnvLogic.demodulize('A::B::C-CLASS') #=> 'A_B_C_CLASS'
+  #   EnvLogic.env_value('A::B::C-CLASS') #=> 'A_B_C_CLASS_ENV'
+  #   EnvLogic.env_value(A::B::C-CLASS) #=> 'A_B_C_CLASS_ENV'
   # @return [String]
-  def self.demodulize(name)
-    name
+  def self.env_value(name)
+    env_name = name
+      .to_s
       .underscore
       .tr('/', '_')
       .upcase
+    "#{env_name}_ENV"
+  end
+
+  # Get application name of gem or application based on path
+  # @example
+  #   EnvLogic.app_name('projects/facebook-api') # => 'facebook_api'
+  def self.app_name
+    app_root
+      .to_s
+      .split('/')
+      .last
   end
 
   # @return [String] app root path
