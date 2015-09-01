@@ -15,9 +15,7 @@ RSpec.describe EnvLogic do
 
   describe '.app_env' do
     let(:app_name) { rand.to_s }
-    let(:gem_name) { rand.to_s }
     let(:app_env_value) { rand.to_s }
-    let(:gem_env_value) { rand.to_s }
 
     context 'when we have app root env' do
       before do
