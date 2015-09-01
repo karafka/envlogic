@@ -7,7 +7,7 @@ module EnvLogic
   # Preference is given for ENV of application if it is set
   #   otherwise we get ENV of class where we extend EnvLogic::Env
   #
-  # @param [Class] klass where we extend EnvLogic::Env
+  # @param [Class] klass class where we extend EnvLogic::Env
   # @example
   #   If we use this method in Karafka gem it returns ENV of Karafka gem
   #   module Karafka
@@ -24,7 +24,7 @@ module EnvLogic
   #     EnvLogic.app_env(App) => ENV['FACEBOOK_APP_ENV']
   #
   #   Or application name if it is set
-  #     ENV['FACEBOOK_API'] = 'development'
+  #     ENV['FACEBOOK_API_ENV'] = 'development'
   #     EnvLogic.app_env(Karafka) => ENV['FACEBOOK_API_ENV'] => 'development'
   #
   # @return [String] environment value if application name based ENV is set.
