@@ -41,8 +41,8 @@ module EnvLogic
 
   # @param [Class, String] name Class name or application name which we should be used in ENV name
   # @example
-  #   EnvLogic.env_value('A::B::C-CLASS') #=> 'A_B_C_CLASS_ENV'
-  #   EnvLogic.env_value(A::B::C-CLASS) #=> 'A_B_C_CLASS_ENV'
+  #   EnvLogic.env_value('facebook-api') #=> 'FACEBOOK_API_ENV'
+  #   EnvLogic.env_value(A::B::Class) #=> 'A_B_CLASS_ENV'
   # @return [String]
   def self.env_value(name)
     env_name = name
@@ -55,7 +55,7 @@ module EnvLogic
 
   # Get application name of gem or application based on path
   # @example
-  #   EnvLogic.app_name('projects/facebook-api') # => 'facebook_api'
+  #   EnvLogic.app_name('projects/facebook-api') # => 'facebook-api'
   def self.app_name
     app_root
       .to_s
