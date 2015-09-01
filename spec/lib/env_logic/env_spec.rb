@@ -5,7 +5,7 @@ RSpec.describe EnvLogic::Env do
   subject do
     ClassBuilder.build do
       def self.to_s
-        'TestClass'
+        'BaseModule::TestClass'
       end
 
       extend EnvLogic::Env
@@ -21,7 +21,7 @@ RSpec.describe EnvLogic::Env do
       before do
         expect(EnvLogic).to receive(:app_root) { path }
         expect(ENV).to receive(:[])
-          .with('TESTCLASS_ENV') { nil }
+          .with('BASE_MODULE_TEST_CLASS_ENV') { nil }
         expect(ENV).to receive(:[])
           .with('KARAFKA_ENV') { nil }
         allow(ENV).to receive(:[])
@@ -46,7 +46,7 @@ RSpec.describe EnvLogic::Env do
         expect(ENV).to receive(:[])
           .with('KARAFKA_ENV') { nil }
         expect(ENV).to receive(:[])
-          .with('TESTCLASS_ENV') { 'test_class_env' }
+          .with('BASE_MODULE_TEST_CLASS_ENV') { 'test_class_env' }
         ENV['RACK_ENV'] = 'test'
       end
 

@@ -1,5 +1,9 @@
-require 'env_logic/version'
-require 'env_logic/env'
+%w(
+  env_logic/version
+  env_logic/env
+  active_support/inflector
+  active_support/string_inquirer
+).each { |lib| require lib }
 
 # Main module to encapsulate logic
 module EnvLogic
@@ -38,7 +42,7 @@ module EnvLogic
   # Method defines name of ENV
   # @return [String, Class] name of env value
   # @example
-  #  EnvLogic.env_value(BasicModule::Karafka) # => 'BASICMODULE_KARAFKA_ENV'
+  #  EnvLogic.env_value(BasicModule::Karafka) # => 'BASIC_MODULE_KARAFKA_ENV'
   #  EnvLogic.env_value('projects/facebook-api') # => 'FACEBOOK_API_ENV'
   def self.env_value(root)
     "#{app_name(root)}_ENV"
@@ -57,9 +61,9 @@ module EnvLogic
   # @return [String]
   def self.demodulize(name)
     name
+      .underscore
+      .tr('/', '_')
       .upcase
-      .tr(':-', '_')
-      .gsub('__', '_')
   end
 
   # @return [String] app root path

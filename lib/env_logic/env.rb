@@ -1,5 +1,3 @@
-require 'active_support/string_inquirer'
-
 # Main module
 module EnvLogic
   # Env module to get and set environment
