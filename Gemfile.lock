@@ -1,21 +1,3 @@
-GIT
-  remote: git://github.com/polishgeeks/polishgeeks-dev-tools.git
-  revision: 410589358e82a548bf5d652d1cd394f024aa9dc4
-  specs:
-    polishgeeks-dev-tools (1.1.2)
-      brakeman
-      faker
-      haml-lint
-      mongoid-rspec
-      pry
-      rspec
-      rubocop
-      rubycritic (= 1.2.1)
-      shoulda
-      simplecov
-      timecop
-      yard
-
 PATH
   remote: .
   specs:
@@ -112,6 +94,19 @@ GEM
     origin (2.1.1)
     parser (2.2.2.6)
       ast (>= 1.1, < 3.0)
+    polishgeeks-dev-tools (1.1.2)
+      brakeman
+      faker
+      haml-lint
+      mongoid-rspec
+      pry
+      rspec
+      rubocop
+      rubycritic (= 1.2.1)
+      shoulda
+      simplecov
+      timecop
+      yard
     powerpack (0.1.1)
     procto (0.0.2)
     pry (0.10.1)
@@ -201,7 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   env-logic!
-  polishgeeks-dev-tools!
+  polishgeeks-dev-tools
 
 BUNDLED WITH
    1.10.6

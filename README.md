@@ -10,11 +10,6 @@ Add gem to your Gemfile
 
 ## Usage
 
-Require env_logic in your app
-
-```ruby
-  require 'env_logic'
-```
 Extend *EnvLogic::Env* class into the class or module where you want to set
 and get *env* variable.
 

@@ -2,13 +2,15 @@
 module EnvLogic
   # Env module to get and set environment
   module Env
+    # Rack environment
+    RACK_ENV = ENV['RACK_ENV']
     # Returns the current Application environment.
     # @example
     #   App.env # => 'development'
     #   App.env.development? # => true
     #   App.env.production? # => false
     def env
-      env = EnvLogic.app_env(self) || ENV['RACK_ENV'] || 'development'
+      env = EnvLogic.app_env(self) || RACK_ENV || 'development'
       @env ||= ActiveSupport::StringInquirer.new(env)
     end
 
