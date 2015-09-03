@@ -1,75 +1,128 @@
 require 'spec_helper'
 
 RSpec.describe Envlogic::Env do
-  let(:path) { Pathname.new(File.join(Dir.pwd, 'lib', 'app_name')) }
+  using Envlogic::StringRefinements
 
-  subject do
-    ClassBuilder.build do
-      def self.to_s
-        'BaseModule::TestClass'
+  let(:test_class) { ClassBuilder.build }
+
+  subject { described_class.new(test_class) }
+
+  describe '#initialize' do
+    context 'when we dont have any ENVs that we can use' do
+      before do
+        expect(ENV)
+          .to receive(:[])
+          .at_least(3).times
+          .and_return(nil)
+
+        expect_any_instance_of(described_class)
+          .to receive(:app_dir_name)
+          .and_return(rand.to_s)
       end
 
-      extend Envlogic::Env
+      it 'should use FALLBACK_ENV' do
+        expect(subject).to eq described_class::FALLBACK_ENV
+      end
+    end
+
+    context 'when app_dir_name env key env is set' do
+      let(:env_value) { rand.to_s }
+
+      before do
+        expect_any_instance_of(described_class)
+          .to receive(:app_dir_name)
+          .exactly(:once)
+          .and_return('envlogic')
+
+        expect(ENV)
+          .to receive(:[])
+          .with('ENVLOGIC_ENV')
+          .and_return(env_value)
+      end
+
+      it 'should use it' do
+        expect(subject).to eq env_value
+      end
+    end
+
+    context 'when class name env is set' do
+      let(:env_value) { rand.to_s }
+
+      before do
+        expect_any_instance_of(described_class)
+          .to receive(:app_dir_name)
+          .exactly(:once)
+          .and_return('envlogic')
+
+        expect(ENV)
+          .to receive(:[])
+          .and_return(nil, env_value)
+      end
+
+      it 'should use it' do
+        expect(subject).to eq env_value
+      end
+    end
+
+    context 'when FALLBACK_ENV_KEY value is set' do
+      let(:env_value) { rand.to_s }
+
+      before do
+        expect_any_instance_of(described_class)
+          .to receive(:app_dir_name)
+          .exactly(:once)
+          .and_return('envlogic')
+
+        expect(ENV)
+          .to receive(:[])
+          .and_return(nil, nil, env_value)
+      end
+
+      it 'should use it' do
+        expect(subject).to eq env_value
+      end
     end
   end
 
-  before do
-    subject.instance_variable_set(:'@envlogic_env', nil)
-  end
+  describe '#update' do
+    let(:new_env) { rand.to_s }
 
-  describe '.env' do
-    context 'ENV variables are not set' do
-      it { expect(subject.env.development?).to be_truthy }
-    end
+    it 'should replace self with inquired new value' do
+      expect(subject)
+        .to receive(:replace)
+        .with(
+          ActiveSupport::StringInquirer.new(new_env)
+        )
 
-    context 'RACK_ENV is set' do
-      let(:rack_env) { 'test' }
-
-      before do
-        expect(Envlogic).to receive(:app_root) { path }
-        expect(ENV).to receive(:[])
-          .with('BASE_MODULE_TEST_CLASS_ENV') { nil }
-        expect(ENV).to receive(:[])
-          .with('APP_NAME_ENV') { nil }
-        stub_const('Envlogic::Env::RACK_ENV', rack_env)
-        allow(ENV).to receive(:[])
-          .with('RACK_ENV') { Envlogic::Env::RACK_ENV }
-      end
-
-      it { expect(subject.env.test?).to be_truthy }
-    end
-
-    context 'application name based env is set' do
-      before do
-        expect(Envlogic).to receive(:app_root) { path }
-        expect(ENV).to receive(:[])
-          .with('APP_NAME_ENV') { 'production' }
-        ENV['RACK_ENV'] = 'test'
-      end
-
-      it { expect(subject.env.production?).to be_truthy }
-    end
-
-    context 'class name based env is set' do
-      before do
-        expect(Envlogic).to receive(:app_root) { path }
-        expect(ENV).to receive(:[])
-          .with('APP_NAME_ENV') { nil }
-        expect(ENV).to receive(:[])
-          .with('BASE_MODULE_TEST_CLASS_ENV') { 'test_class_env' }
-        ENV['RACK_ENV'] = 'test'
-      end
-
-      it { expect(subject.env.test_class_env?).to be_truthy }
+      subject.update(new_env)
     end
   end
 
-  describe 'env=' do
-    before do
-      subject.env = 'production'
-    end
+  describe '#app_dir_name' do
+    let(:pathname) { double }
+    let(:dir_name) { double }
 
-    it { expect(subject.env.production?).to be_truthy }
-    it { expect(subject.env.staging?).to be_falsey }
+    before { subject }
+
+    it 'should get a basename from dirname' do
+      expect(Pathname)
+        .to receive(:new)
+        .with(ENV['BUNDLE_GEMFILE'])
+        .and_return(pathname)
+
+      expect(pathname)
+        .to receive_message_chain(:dirname, :basename, :to_s)
+        .and_return(dir_name)
+
+      expect(subject.send(:app_dir_name)).to eq dir_name
+    end
+  end
+
+  %w( production test development ).each do |env|
+    context "environment: #{env}" do
+      before { subject.update(env) }
+
+      it { expect(subject.public_send(:"#{env}?")).to eq true }
+    end
   end
 end

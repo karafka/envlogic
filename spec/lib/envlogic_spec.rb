@@ -1,29 +1,42 @@
 require 'spec_helper'
 
 RSpec.describe Envlogic do
-  subject { described_class }
-
-  describe '.app_root' do
-    context 'when we want to get app root path' do
-      before do
-        expect(ENV).to receive(:[]).with('BUNDLE_GEMFILE').and_return('/')
-      end
-
-      it { expect(subject.app_root.to_path).to eq '/' }
+  subject do
+    ClassBuilder.build do
+      extend Envlogic
     end
   end
 
-  describe '.app_env' do
-    let(:app_name) { rand.to_s }
-    let(:app_env_value) { rand.to_s }
+  describe '#env' do
+    before { subject.instance_variable_set(:'@env', env) }
 
-    context 'when we have app root env' do
-      before do
-        ENV["#{app_name.upcase}_ENV"] = app_env_value
-        expect(subject).to receive(:app_root).and_return("path/#{app_name}")
+    context 'when env is not yet set' do
+      let(:env) { nil }
+
+      it 'should create envlogic env instance and return it' do
+        expect(subject.env).to be_a described_class::Env
       end
+    end
 
-      it { expect(subject.app_env(Object)).to eq app_env_value }
+    context 'when env is set' do
+      let(:env) { double }
+
+      it 'should return it' do
+        expect(subject.env).to eq env
+      end
+    end
+  end
+
+  describe '#env=' do
+    let(:stringified_env) { double }
+    let(:new_env) { double(to_s: stringified_env) }
+
+    it 'should execute update on env' do
+      expect(subject.env)
+        .to receive(:update)
+        .with(stringified_env)
+
+      subject.env = new_env
     end
   end
 end
