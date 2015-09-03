@@ -82,6 +82,13 @@ Basic::Karafka.env.production? # => false
 Basic::Karafka.env.development? # => true
 ```
 
+## References
+
+ * [Karafka framework](https://github.com/karafka/karafka)
+ * [Waterdrop](https://github.com/karafka/waterdrop)
+ * [Envlogic](https://github.com/karafka/envlogic)
+ * [Sidekiq Glass](https://github.com/karafka/sidekiq-glass)
+
 ## Note on Patches/Pull Requests
 
 Fork the project.
