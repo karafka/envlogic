@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.platform      = Gem::Platform::RUBY
   spec.version       = Envlogic::VERSION
   spec.authors       = ['pavlo_vavruk', 'Maciej Mensfeld']
-  spec.email         = ['pavlo.vavruk@gmail.com', 'maciej@mensfeld.pl']
+  spec.email         = %w( pavlo.vavruk@gmail.com maciej@mensfeld.pl )
 
   spec.summary       = %q{ Ruby based library which allows to set and get environments values
                            and easily check environment }
