@@ -22,6 +22,7 @@ RSpec.describe Envlogic do
         ENV["#{app_name.upcase}_ENV"] = app_env_value
         expect(subject).to receive(:app_root).and_return("path/#{app_name}")
       end
+
       it { expect(subject.app_env(Object)).to eq app_env_value }
     end
   end
