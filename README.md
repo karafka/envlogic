@@ -1,4 +1,8 @@
 # Envlogic
+
+[![Build Status](https://travis-ci.org/karafka/envlogic.png)](https://travis-ci.org/karafka/envlogic)
+[![Code Climate](https://codeclimate.com/github/karafka/envlogic/badges/gpa.svg)](https://codeclimate.com/github/karafka/envlogic)
+
 Envlogic is a library used to manage environments for your Ruby application in a similar to Rails.env way.
 
 ## Installation
