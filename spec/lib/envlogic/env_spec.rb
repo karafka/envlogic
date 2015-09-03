@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe EnvLogic::Env do
+RSpec.describe Envlogic::Env do
   let(:path) { Pathname.new(File.join(Dir.pwd, 'lib', 'karafka')) }
   subject do
     ClassBuilder.build do
@@ -8,7 +8,7 @@ RSpec.describe EnvLogic::Env do
         'BaseModule::TestClass'
       end
 
-      extend EnvLogic::Env
+      extend Envlogic::Env
     end
   end
 
@@ -20,21 +20,21 @@ RSpec.describe EnvLogic::Env do
     context 'RACK_ENV is set' do
       let(:rack_env) { 'test' }
       before do
-        expect(EnvLogic).to receive(:app_root) { path }
+        expect(Envlogic).to receive(:app_root) { path }
         expect(ENV).to receive(:[])
           .with('BASE_MODULE_TEST_CLASS_ENV') { nil }
         expect(ENV).to receive(:[])
           .with('KARAFKA_ENV') { nil }
-        stub_const('EnvLogic::Env::RACK_ENV', rack_env)
+        stub_const('Envlogic::Env::RACK_ENV', rack_env)
         allow(ENV).to receive(:[])
-          .with('RACK_ENV') { EnvLogic::Env::RACK_ENV }
+          .with('RACK_ENV') { Envlogic::Env::RACK_ENV }
       end
       it { expect(subject.env.test?).to be_truthy }
     end
 
     context 'application name based env is set' do
       before do
-        expect(EnvLogic).to receive(:app_root) { path }
+        expect(Envlogic).to receive(:app_root) { path }
         expect(ENV).to receive(:[])
           .with('KARAFKA_ENV') { 'production' }
         ENV['RACK_ENV'] = 'test'
@@ -44,7 +44,7 @@ RSpec.describe EnvLogic::Env do
 
     context 'class name based env is set' do
       before do
-        expect(EnvLogic).to receive(:app_root) { path }
+        expect(Envlogic).to receive(:app_root) { path }
         expect(ENV).to receive(:[])
           .with('KARAFKA_ENV') { nil }
         expect(ENV).to receive(:[])

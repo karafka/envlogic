@@ -1,70 +1,94 @@
-# EnvLogic
-Envlogic is a library used to manage environments for your Ruby application
+# Envlogic
+Envlogic is a library used to manage environments for your Ruby application in a similar to Rails.env way.
 
 ## Installation
 
 Add gem to your Gemfile
 ```ruby
-  gem 'env-logic'
+  gem 'envlogic'
 ```
 
 ## Usage
 
-Extend *EnvLogic::Env* class into the class or module where you want to set
-and get *env* variable.
+Extend your class or module in which you want to use this library with **Envlogic::Env** module.
 
 ```ruby
-module Karafka
-  extend EnvLogic::Env
-
-  # code of Karafka module
+module ExampleModule
+  extend Envlogic::Env
+  # code of this module
 end
 ```
 
-After adding the code above Karafka module will have *env* and *env=* methods.
+Once you extend your class/module with it, you will have two additional methods (with two aliases):
+
+ - *.env* (.environment) - obtain current env and work with it
+ - *.env=* (.environment=) - set your own environment
 
 ```ruby
-  Karafka.env = development
-  Karafka.env.development? # => true
-  Karafka.env.production? # => false
+  ExampleModule.env = 'development'
+  ExampleModule.env.development? # => true
+  ExampleModule.env.production? # => false
 ```
 
-Default environment value is get from ENV variables which are set by developer
-or ENV['RACK_ENV']. Otherwise default value is development.
+### ENV variables key names and default fallbacks
 
-### ENV variables which are set by developer
+#### Application root directory env key name
 
-By default gem is looking for ENV with *'APP_NAME_ENV'*
-e.g. If app name is facebook-api it will search environment in
-ENV['FACEBOOK_API_ENV'].
+By default gem is looking for ENV variable that is based on your application root directory.
 
-```ruby
-ENV['FACEBOOK_API_ENV'] = 'production'
-Karafka.env.production? # => true
+For example, if your application lies in */home/deploy/my_app* it will look for **MY_APP_ENV** variable.
 
-```
+#### Module/class name based env key name
 
-Otherwise it looks in env which is build from class where you add Env logic:
-
+If there's no env value under the app directory name key, it will fallback to the module/class based env variable name (including the whole namespace chain):
 
 ```ruby
 module Basic
   module Karafka
-    extend EnvLogic::Env
-
+    extend Envlogic::Env
     # code of Karafka module
   end
 end
-
 ```
 
 ```ruby
 ENV['FACEBOOK_API_ENV'] = nil
 ENV['BASIC_KARAFKA_ENV'] = 'development'
 
-Karafka.env.production? # => false
-Karafka.env.development? # => true
-
+Basic::Karafka.env.production? # => false
+Basic::Karafka.env.development? # => true
 ```
 
+#### Default fallbacks
 
+If there's no other way to determine the environment, Envlogic will fallback to ENV['RACK_ENV'] and if it fails, it will just assume that we're in 'development' mode.
+
+You can also assign the environment directly in Ruby:
+
+```ruby
+module Basic
+  module Karafka
+    extend Envlogic::Env
+    # code of Karafka module
+  end
+end
+
+Basic::Karafka.env = :development
+Basic::Karafka.env.production? # => false
+Basic::Karafka.env.development? # => true
+```
+
+## Note on Patches/Pull Requests
+
+Fork the project.
+Make your feature addition or bug fix.
+Add tests for it. This is important so I don't break it in a future version unintentionally.
+Commit, do not mess with Rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull). Send me a pull request. Bonus points for topic branches.
+
+Each pull request must pass our quality requirements. To check if everything is as it should be, we use [PolishGeeks Dev Tools](https://github.com/polishgeeks/polishgeeks-dev-tools) that combine multiple linters and code analyzers. Please run:
+
+```bash
+bundle exec rake
+```
+
+to check if everything is in order. After that you can submit a pull request.

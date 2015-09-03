@@ -26,4 +26,4 @@ RSpec.configure do |config|
   end
 end
 
-require 'env_logic'
+require 'envlogic'

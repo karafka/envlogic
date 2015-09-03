@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe EnvLogic do
+RSpec.describe Envlogic do
   subject { described_class }
 
   describe '.app_root' do
