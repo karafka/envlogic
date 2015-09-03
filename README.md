@@ -14,11 +14,11 @@ Add gem to your Gemfile
 
 ## Usage
 
-Extend your class or module in which you want to use this library with **Envlogic::Env** module.
+Extend your class or module in which you want to use this library with **Envlogic** module.
 
 ```ruby
 module ExampleModule
-  extend Envlogic::Env
+  extend Envlogic
   # code of this module
 end
 ```
@@ -49,7 +49,7 @@ If there's no env value under the app directory name key, it will fallback to th
 ```ruby
 module Basic
   module Karafka
-    extend Envlogic::Env
+    extend Envlogic
     # code of Karafka module
   end
 end
@@ -72,7 +72,7 @@ You can also assign the environment directly in Ruby:
 ```ruby
 module Basic
   module Karafka
-    extend Envlogic::Env
+    extend Envlogic
     # code of Karafka module
   end
 end
