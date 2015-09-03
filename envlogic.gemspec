@@ -4,7 +4,7 @@ require 'rake'
 require 'envlogic/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "env-logic"
+  spec.name          = "envlogic"
   spec.platform      = Gem::Platform::RUBY
   spec.version       = Envlogic::VERSION
   spec.authors       = ['pavlo_vavruk', 'Maciej Mensfeld']

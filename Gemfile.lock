@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    env-logic (1.0.0)
+    envlogic (1.0.0)
       activesupport
 
 GEM
@@ -195,7 +195,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  env-logic!
+  envlogic!
   polishgeeks-dev-tools
 
 BUNDLED WITH
