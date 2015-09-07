@@ -88,6 +88,8 @@ Basic::Karafka.env.development? # => true
  * [Waterdrop](https://github.com/karafka/waterdrop)
  * [Envlogic](https://github.com/karafka/envlogic)
  * [Sidekiq Glass](https://github.com/karafka/sidekiq-glass)
+ * [Null Logger](https://github.com/karafka/null-logger)
+
 
 ## Note on Patches/Pull Requests
 
