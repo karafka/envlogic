@@ -85,12 +85,13 @@ Basic::Karafka.env.development? # => true
 
 ## References
 
- * [Karafka framework](https://github.com/karafka/karafka)
- * [Waterdrop](https://github.com/karafka/waterdrop)
- * [Envlogic](https://github.com/karafka/envlogic)
- * [Sidekiq Glass](https://github.com/karafka/sidekiq-glass)
- * [Null Logger](https://github.com/karafka/null-logger)
-
+* [Karafka framework](https://github.com/karafka/karafka)
+* [Waterdrop](https://github.com/karafka/waterdrop)
+* [Envlogic](https://github.com/karafka/envlogic)
+* [Sidekiq Glass](https://github.com/karafka/sidekiq-glass)
+* [Null Logger](https://github.com/karafka/null-logger)
+* [Envlogic Travis CI](https://travis-ci.org/karafka/envlogic)
+* [Envlogic Code Climate](https://codeclimate.com/github/karafka/envlogic)
 
 ## Note on Patches/Pull Requests
 
