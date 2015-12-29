@@ -1,10 +1,10 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rake'
+
 require 'envlogic/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "envlogic"
+  spec.name          = 'envlogic'
   spec.platform      = Gem::Platform::RUBY
   spec.version       = Envlogic::VERSION
   spec.authors       = ['pavlo_vavruk', 'Maciej Mensfeld']
