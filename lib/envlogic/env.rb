@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Main module
 module Envlogic
   # Env module to get and set environment
@@ -5,9 +6,9 @@ module Envlogic
     using StringRefinements
 
     # What environment key should be used by default
-    FALLBACK_ENV_KEY = 'RACK_ENV'
+    FALLBACK_ENV_KEY = 'RACK_ENV'.freeze
     # What default environment should be asumed when there's nothing else
-    FALLBACK_ENV = 'development'
+    FALLBACK_ENV = 'development'.freeze
 
     # @param klass [Class, Module] class/module for which we want to build a Envlogic::Env object
     # @return [Envlogic::Env] envlogic env object]
@@ -37,7 +38,8 @@ module Envlogic
     # @note Will return only the last part, so if the dir is /home/apps/my_app it will
     #   only return the 'my_app' part
     def app_dir_name
-      Pathname.new(ENV['BUNDLE_GEMFILE'])
+      Pathname
+        .new(ENV['BUNDLE_GEMFILE'])
         .dirname
         .basename
         .to_s

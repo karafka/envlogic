@@ -33,6 +33,6 @@ module Envlogic
   end
 
   # We alias this for backword compatibility with some code that uses full names
-  alias_method :environment, :env
-  alias_method :environment=, :env=
+  alias environment env
+  alias environment= env=
 end
