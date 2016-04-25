@@ -3,7 +3,7 @@ module Envlogic
   # String refinements used in this library
   module StringRefinements
     # Postfix for ENV keys
-    ENV_KEY_POSTFIX = '_ENV'.freeze
+    ENV_KEY_POSTFIX = '_ENV'
 
     refine String do
       # Converts any string into a bash ENV key

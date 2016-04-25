@@ -6,9 +6,9 @@ module Envlogic
     using StringRefinements
 
     # What environment key should be used by default
-    FALLBACK_ENV_KEY = 'RACK_ENV'.freeze
+    FALLBACK_ENV_KEY = 'RACK_ENV'
     # What default environment should be asumed when there's nothing else
-    FALLBACK_ENV = 'development'.freeze
+    FALLBACK_ENV = 'development'
 
     # @param klass [Class, Module] class/module for which we want to build a Envlogic::Env object
     # @return [Envlogic::Env] envlogic env object]

@@ -2,8 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Envlogic do
   subject do
+    extended = described_class
+
     ClassBuilder.build do
-      extend Envlogic
+      extend extended
     end
   end
 
@@ -13,7 +15,7 @@ RSpec.describe Envlogic do
     context 'when env is not yet set' do
       let(:env) { nil }
 
-      it 'should create envlogic env instance and return it' do
+      it 'expect to create envlogic env instance and return it' do
         expect(subject.env).to be_a described_class::Env
       end
     end
@@ -21,7 +23,7 @@ RSpec.describe Envlogic do
     context 'when env is set' do
       let(:env) { double }
 
-      it 'should return it' do
+      it 'expect to return it' do
         expect(subject.env).to eq env
       end
     end
@@ -31,7 +33,7 @@ RSpec.describe Envlogic do
     let(:stringified_env) { double }
     let(:new_env) { double(to_s: stringified_env) }
 
-    it 'should execute update on env' do
+    it 'expect to execute update on env' do
       expect(subject.env)
         .to receive(:update)
         .with(stringified_env)

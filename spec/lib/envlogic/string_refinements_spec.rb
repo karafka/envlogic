@@ -9,7 +9,7 @@ RSpec.describe Envlogic::StringRefinements do
     context 'when this is a non slash string' do
       let(:string) { SecureRandom.hex }
 
-      it 'should just upcase it and add _ENV' do
+      it 'expect to just upcase it and add _ENV' do
         expect(string.to_env_key).to eq string.upcase + postfix
       end
     end
@@ -17,7 +17,7 @@ RSpec.describe Envlogic::StringRefinements do
     context 'when this is somekind of modulized string' do
       let(:string) { "#{SecureRandom.hex}::#{SecureRandom.hex}" }
 
-      it 'should should upcase, underscore it and add _ENV' do
+      it 'expect to upcase, underscore it and add _ENV' do
         expect(string.to_env_key).to eq string.underscore.upcase.tr('/', '_') + postfix
       end
     end

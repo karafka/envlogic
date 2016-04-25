@@ -10,18 +10,20 @@ RSpec.describe Envlogic::Env do
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
       before do
+        subject
+
         expect(ENV)
           .to receive(:[])
           .at_least(3).times
           .and_return(nil)
 
-        expect_any_instance_of(described_class)
+        expect(subject)
           .to receive(:app_dir_name)
           .and_return(rand.to_s)
       end
 
-      it 'should use FALLBACK_ENV' do
-        expect(subject).to eq described_class::FALLBACK_ENV
+      it 'expect to use FALLBACK_ENV' do
+        expect(subject.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
       end
     end
 
@@ -29,7 +31,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        expect_any_instance_of(described_class)
+        subject
+
+        expect(subject)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -40,8 +44,8 @@ RSpec.describe Envlogic::Env do
           .and_return(env_value)
       end
 
-      it 'should use it' do
-        expect(subject).to eq env_value
+      it 'expect to use it' do
+        expect(subject.send(:initialize, test_class)).to eq env_value
       end
     end
 
@@ -49,7 +53,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        expect_any_instance_of(described_class)
+        subject
+
+        expect(subject)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -59,8 +65,8 @@ RSpec.describe Envlogic::Env do
           .and_return(nil, env_value)
       end
 
-      it 'should use it' do
-        expect(subject).to eq env_value
+      it 'expect to use it' do
+        expect(subject.send(:initialize, test_class)).to eq env_value
       end
     end
 
@@ -68,7 +74,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        expect_any_instance_of(described_class)
+        subject
+
+        expect(subject)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -78,8 +86,8 @@ RSpec.describe Envlogic::Env do
           .and_return(nil, nil, env_value)
       end
 
-      it 'should use it' do
-        expect(subject).to eq env_value
+      it 'expect to use it' do
+        expect(subject.send(:initialize, test_class)).to eq env_value
       end
     end
   end
@@ -87,7 +95,7 @@ RSpec.describe Envlogic::Env do
   describe '#update' do
     let(:new_env) { rand.to_s }
 
-    it 'should replace self with inquired new value' do
+    it 'expect to replace self with inquired new value' do
       expect(subject)
         .to receive(:replace)
         .with(
@@ -104,7 +112,7 @@ RSpec.describe Envlogic::Env do
 
     before { subject }
 
-    it 'should get a basename from dirname' do
+    it 'expect to get a basename from dirname' do
       expect(Pathname)
         .to receive(:new)
         .with(ENV['BUNDLE_GEMFILE'])
