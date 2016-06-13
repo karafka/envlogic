@@ -31,7 +31,7 @@ RSpec.describe Envlogic do
 
   describe '#env=' do
     let(:stringified_env) { double }
-    let(:new_env) { double(to_s: stringified_env) }
+    let(:new_env) { instance_double(Envlogic::Env, to_s: stringified_env) }
 
     it 'expect to execute update on env' do
       expect(subject.env)

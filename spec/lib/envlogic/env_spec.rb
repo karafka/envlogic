@@ -96,8 +96,7 @@ RSpec.describe Envlogic::Env do
     let(:new_env) { rand.to_s }
 
     it 'expect to replace self with inquired new value' do
-      expect(subject)
-        .to receive(:replace)
+      expect(subject).to receive(:replace)
         .with(
           ActiveSupport::StringInquirer.new(new_env)
         )
@@ -110,14 +109,16 @@ RSpec.describe Envlogic::Env do
     let(:pathname) { double }
     let(:dir_name) { double }
 
-    before { subject }
+    before do
+      subject
 
-    it 'expect to get a basename from dirname' do
       expect(Pathname)
         .to receive(:new)
         .with(ENV['BUNDLE_GEMFILE'])
         .and_return(pathname)
+    end
 
+    it 'expect to get a basename from dirname' do
       expect(pathname)
         .to receive_message_chain(:dirname, :basename, :to_s)
         .and_return(dir_name)
