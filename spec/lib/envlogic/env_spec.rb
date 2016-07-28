@@ -127,7 +127,9 @@ RSpec.describe Envlogic::Env do
     end
   end
 
-  %w( production test development ).each do |env|
+  %w(
+    production test development
+  ).each do |env|
     context "environment: #{env}" do
       before { subject.update(env) }
 
