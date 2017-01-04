@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Envlogic::StringRefinements do
   using described_class
 

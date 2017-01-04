@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Envlogic do
   subject do
     extended = described_class
