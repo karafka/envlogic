@@ -1,5 +1,13 @@
 # Envlogic gem changelog
 
+## Unreleased
+- Switched with quality metrics to Coditsu (https://coditsu.io/)
+- Gem dump
+- Quality improvements
+- Gems cleanup
+- Ruby dump to 2.4.1
+- Better specs (less internal, more integrational)
+
 ## 1.0.3
 - Gem dump x3
 - ~~Ruby version defaults to 2.3.3~~

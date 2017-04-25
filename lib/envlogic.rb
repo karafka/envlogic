@@ -1,10 +1,12 @@
-%w(
+# frozen_string_literal: true
+
+%w[
   active_support/inflector
   active_support/string_inquirer
   envlogic/version
   envlogic/string_refinements
   envlogic/env
-).each { |lib| require lib }
+].each { |lib| require lib }
 
 # Main module that encapsulates logic that should be used to extend any class/module
 # @note This module should be extended into the class/module in which we want to have env support

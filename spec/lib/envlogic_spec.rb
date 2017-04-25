@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 RSpec.describe Envlogic do
-  subject do
+  subject(:envlogic) do
     extended = described_class
 
     ClassBuilder.build do
@@ -8,13 +10,13 @@ RSpec.describe Envlogic do
   end
 
   describe '#env' do
-    before { subject.instance_variable_set(:'@env', env) }
+    before { envlogic.instance_variable_set(:'@env', env) }
 
     context 'when env is not yet set' do
       let(:env) { nil }
 
       it 'expect to create envlogic env instance and return it' do
-        expect(subject.env).to be_a described_class::Env
+        expect(envlogic.env).to be_a described_class::Env
       end
     end
 
@@ -22,7 +24,7 @@ RSpec.describe Envlogic do
       let(:env) { double }
 
       it 'expect to return it' do
-        expect(subject.env).to eq env
+        expect(envlogic.env).to eq env
       end
     end
   end
@@ -32,11 +34,11 @@ RSpec.describe Envlogic do
     let(:new_env) { instance_double(Envlogic::Env, to_s: stringified_env) }
 
     it 'expect to execute update on env' do
-      expect(subject.env)
+      expect(envlogic.env)
         .to receive(:update)
         .with(stringified_env)
 
-      subject.env = new_env
+      envlogic.env = new_env
     end
   end
 end
