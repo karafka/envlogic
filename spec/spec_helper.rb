@@ -19,6 +19,8 @@ SimpleCov.start do
   merge_timeout 600
 end
 
+SimpleCov.minimum_coverage 100
+
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
