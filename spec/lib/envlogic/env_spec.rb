@@ -10,7 +10,7 @@ RSpec.describe Envlogic::Env do
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
       before do
-        ENV[described_class::FALLBACK_ENV] = nil
+        ENV[described_class::FALLBACK_ENV_KEY] = nil
         envlogic_env
       end
 
