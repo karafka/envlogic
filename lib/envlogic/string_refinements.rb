@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Envlogic
   # String refinements used in this library
   module StringRefinements

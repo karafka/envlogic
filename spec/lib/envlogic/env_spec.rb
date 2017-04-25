@@ -1,27 +1,29 @@
+# frozen_string_literal: true
+
 RSpec.describe Envlogic::Env do
   using Envlogic::StringRefinements
 
-  let(:test_class) { ClassBuilder.build }
+  subject(:envlogic_env) { described_class.new(test_class) }
 
-  subject { described_class.new(test_class) }
+  let(:test_class) { ClassBuilder.build }
 
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
       before do
-        subject
+        envlogic_env
 
         expect(ENV)
           .to receive(:[])
           .at_least(3).times
           .and_return(nil)
 
-        expect(subject)
+        expect(envlogic_env)
           .to receive(:app_dir_name)
           .and_return(rand.to_s)
       end
 
       it 'expect to use FALLBACK_ENV' do
-        expect(subject.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
+        expect(envlogic_env.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
       end
     end
 
@@ -29,9 +31,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        subject
+        envlogic_env
 
-        expect(subject)
+        expect(envlogic_env)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -43,7 +45,7 @@ RSpec.describe Envlogic::Env do
       end
 
       it 'expect to use it' do
-        expect(subject.send(:initialize, test_class)).to eq env_value
+        expect(envlogic_env.send(:initialize, test_class)).to eq env_value
       end
     end
 
@@ -51,9 +53,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        subject
+        envlogic_env
 
-        expect(subject)
+        expect(envlogic_env)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -64,7 +66,7 @@ RSpec.describe Envlogic::Env do
       end
 
       it 'expect to use it' do
-        expect(subject.send(:initialize, test_class)).to eq env_value
+        expect(envlogic_env.send(:initialize, test_class)).to eq env_value
       end
     end
 
@@ -72,9 +74,9 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        subject
+        envlogic_env
 
-        expect(subject)
+        expect(envlogic_env)
           .to receive(:app_dir_name)
           .exactly(:once)
           .and_return('envlogic')
@@ -85,7 +87,7 @@ RSpec.describe Envlogic::Env do
       end
 
       it 'expect to use it' do
-        expect(subject.send(:initialize, test_class)).to eq env_value
+        expect(envlogic_env.send(:initialize, test_class)).to eq env_value
       end
     end
   end
@@ -94,12 +96,12 @@ RSpec.describe Envlogic::Env do
     let(:new_env) { rand.to_s }
 
     it 'expect to replace self with inquired new value' do
-      expect(subject).to receive(:replace)
+      expect(envlogic_env).to receive(:replace)
         .with(
           ActiveSupport::StringInquirer.new(new_env)
         )
 
-      subject.update(new_env)
+      envlogic_env.update(new_env)
     end
   end
 
@@ -108,7 +110,7 @@ RSpec.describe Envlogic::Env do
     let(:dir_name) { double }
 
     before do
-      subject
+      envlogic_env
 
       expect(Pathname)
         .to receive(:new)
@@ -121,17 +123,17 @@ RSpec.describe Envlogic::Env do
         .to receive_message_chain(:dirname, :basename, :to_s)
         .and_return(dir_name)
 
-      expect(subject.send(:app_dir_name)).to eq dir_name
+      expect(envlogic_env.send(:app_dir_name)).to eq dir_name
     end
   end
 
-  %w(
+  %w[
     production test development
-  ).each do |env|
+  ].each do |env|
     context "environment: #{env}" do
-      before { subject.update(env) }
+      before { envlogic_env.update(env) }
 
-      it { expect(subject.public_send(:"#{env}?")).to eq true }
+      it { expect(envlogic_env.public_send(:"#{env}?")).to eq true }
     end
   end
 end
