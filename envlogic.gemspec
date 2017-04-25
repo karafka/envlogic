@@ -6,16 +6,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'envlogic/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'envlogic'
-  spec.platform      = Gem::Platform::RUBY
-  spec.version       = Envlogic::VERSION
-  spec.authors       = ['pavlo_vavruk', 'Maciej Mensfeld']
-  spec.email         = %w[ pavlo.vavruk@gmail.com maciej@mensfeld.pl ]
-
-  spec.summary       = %q( Ruby based library which allows to set and get environments values
-                           and easily check environment )
-  spec.description   = 'Library used to manage environments for your Ruby application'
-  spec.homepage      = 'https://github.com/karafka/envlogic'
+  spec.name        = 'envlogic'
+  spec.platform    = Gem::Platform::RUBY
+  spec.version     = Envlogic::VERSION
+  spec.authors     = ['pavlo_vavruk', 'Maciej Mensfeld']
+  spec.email       = %w[pavlo.vavruk@gmail.com maciej@mensfeld.pl]
+  spec.summary     = 'Library which allows to set and get environments values'
+  spec.description = 'Library used to manage environments for your Ruby application'
+  spec.homepage    = 'https://github.com/karafka/envlogic'
 
   spec.add_dependency 'activesupport'
   spec.required_ruby_version = '>= 2.2.0'

@@ -9,18 +9,7 @@ RSpec.describe Envlogic::Env do
 
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
-      before do
-        envlogic_env
-
-        expect(ENV)
-          .to receive(:[])
-          .at_least(3).times
-          .and_return(nil)
-
-        expect(envlogic_env)
-          .to receive(:app_dir_name)
-          .and_return(rand.to_s)
-      end
+      before { envlogic_env }
 
       it 'expect to use FALLBACK_ENV' do
         expect(envlogic_env.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
@@ -31,18 +20,11 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
+        ENV['ENVLOGIC_ENV'] = env_value
         envlogic_env
-
-        expect(envlogic_env)
-          .to receive(:app_dir_name)
-          .exactly(:once)
-          .and_return('envlogic')
-
-        expect(ENV)
-          .to receive(:[])
-          .with('ENVLOGIC_ENV')
-          .and_return(env_value)
       end
+
+      after { ENV['ENVLOGIC_ENV'] = nil }
 
       it 'expect to use it' do
         expect(envlogic_env.send(:initialize, test_class)).to eq env_value
@@ -50,20 +32,15 @@ RSpec.describe Envlogic::Env do
     end
 
     context 'when class name env is set' do
+      let(:test_class) { ClassName = ClassBuilder.build }
       let(:env_value) { rand.to_s }
 
       before do
+        ENV['CLASS_NAME_ENV'] = env_value
         envlogic_env
-
-        expect(envlogic_env)
-          .to receive(:app_dir_name)
-          .exactly(:once)
-          .and_return('envlogic')
-
-        expect(ENV)
-          .to receive(:[])
-          .and_return(nil, env_value)
       end
+
+      after { ENV['CLASS_NAME_ENV'] = env_value }
 
       it 'expect to use it' do
         expect(envlogic_env.send(:initialize, test_class)).to eq env_value
@@ -74,17 +51,11 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
+        ENV[described_class::FALLBACK_ENV_KEY] = env_value
         envlogic_env
-
-        expect(envlogic_env)
-          .to receive(:app_dir_name)
-          .exactly(:once)
-          .and_return('envlogic')
-
-        expect(ENV)
-          .to receive(:[])
-          .and_return(nil, nil, env_value)
       end
+
+      after { ENV[described_class::FALLBACK_ENV_KEY] = nil }
 
       it 'expect to use it' do
         expect(envlogic_env.send(:initialize, test_class)).to eq env_value
@@ -95,13 +66,14 @@ RSpec.describe Envlogic::Env do
   describe '#update' do
     let(:new_env) { rand.to_s }
 
-    it 'expect to replace self with inquired new value' do
-      expect(envlogic_env).to receive(:replace)
-        .with(
-          ActiveSupport::StringInquirer.new(new_env)
-        )
+    before do
+      envlogic_env
+      ENV['CLASS_NAME_ENV'] = new_env
+    end
 
+    it 'expect to replace self with inquired new value' do
       envlogic_env.update(new_env)
+      expect(envlogic_env).to eq new_env
     end
   end
 
