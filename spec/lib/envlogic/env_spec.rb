@@ -9,7 +9,10 @@ RSpec.describe Envlogic::Env do
 
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
-      before { envlogic_env }
+      before do
+        ENV[described_class::FALLBACK_ENV] = nil
+        envlogic_env
+      end
 
       it 'expect to use FALLBACK_ENV' do
         expect(envlogic_env.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
@@ -78,24 +81,8 @@ RSpec.describe Envlogic::Env do
   end
 
   describe '#app_dir_name' do
-    let(:pathname) { double }
-    let(:dir_name) { double }
-
-    before do
-      envlogic_env
-
-      expect(Pathname)
-        .to receive(:new)
-        .with(ENV['BUNDLE_GEMFILE'])
-        .and_return(pathname)
-    end
-
     it 'expect to get a basename from dirname' do
-      expect(pathname)
-        .to receive_message_chain(:dirname, :basename, :to_s)
-        .and_return(dir_name)
-
-      expect(envlogic_env.send(:app_dir_name)).to eq dir_name
+      expect(envlogic_env.send(:app_dir_name)).to eq 'envlogic'
     end
   end
 
