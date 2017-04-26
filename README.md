@@ -103,7 +103,7 @@ Commit, do not mess with Rakefile, version, or history. (if you want to have you
 
 [![coditsu](https://coditsu.io/assets/quality_bar.svg)](https://coditsu.io)
 
-Each pull request must pass our quality requirements. To check if everything is as it should be, we use [Coditsu](https://coditsu.io) that combinse multiple linters and code analyzers. Unfortunately, for now it is invite-only based, so just ping us and we will give you access to the quality results.
+Each pull request must pass our quality requirements. To check if everything is as it should be, we use [Coditsu](https://coditsu.io) that combines multiple linters and code analyzers. Unfortunately, for now it is invite-only based, so just ping us and we will give you access to the quality results.
 
 Please run:
 
