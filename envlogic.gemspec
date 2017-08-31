@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'Library which allows to set and get environments values'
   spec.description = 'Library used to manage environments for your Ruby application'
   spec.homepage    = 'https://github.com/karafka/envlogic'
+  spec.license     = 'MIT'
 
   spec.add_dependency 'activesupport'
   spec.required_ruby_version = '>= 2.2.0'

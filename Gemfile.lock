@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    envlogic (1.0.3)
+    envlogic (1.0.4)
       activesupport
 
 GEM
