@@ -1,6 +1,6 @@
 # Envlogic gem changelog
 
-## Unreleased
+## 1.0.4
 - Switched with quality metrics to Coditsu (https://coditsu.io/)
 - Gem dump
 - Quality improvements
