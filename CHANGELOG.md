@@ -7,6 +7,7 @@
 - Gems cleanup
 - Ruby dump to 2.4.1
 - Better specs (less internal, more integrational)
+- License added to the gemspec file
 
 ## 1.0.3
 - Gem dump x3
