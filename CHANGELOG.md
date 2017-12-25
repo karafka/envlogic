@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Ruby 2.4.2 support
+- Ruby 2.5.0 support
 
 ## 1.0.4
 - Switched with quality metrics to Coditsu (https://coditsu.io/)
