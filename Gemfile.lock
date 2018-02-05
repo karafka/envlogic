@@ -39,7 +39,7 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
     thread_safe (0.3.6)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
 
 PLATFORMS
