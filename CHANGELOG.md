@@ -1,8 +1,9 @@
 # Envlogic gem changelog
 
-## Unreleased
+## 1.1.0
 - Ruby 2.4.2 support
 - Ruby 2.5.0 support
+- ActiveSupport dependency dropped in favor of dry-inflector
 
 ## 1.0.4
 - Switched with quality metrics to Coditsu (https://coditsu.io/)

@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 %w[
-  active_support/inflector
   active_support/string_inquirer
+  dry/inflector
   envlogic/version
-  envlogic/string_refinements
   envlogic/env
 ].each { |lib| require lib }
 
