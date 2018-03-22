@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe Envlogic::Env do
-  using Envlogic::StringRefinements
-
   subject(:envlogic_env) { described_class.new(test_class) }
 
   let(:test_class) { ClassBuilder.build }
@@ -10,12 +8,12 @@ RSpec.describe Envlogic::Env do
   describe '#initialize' do
     context 'when we dont have any ENVs that we can use' do
       before do
-        ENV[described_class::FALLBACK_ENV_KEY] = nil
+        ENV['RACK_ENV'] = nil
         envlogic_env
       end
 
       it 'expect to use FALLBACK_ENV' do
-        expect(envlogic_env.send(:initialize, test_class)).to eq described_class::FALLBACK_ENV
+        expect(envlogic_env.send(:initialize, test_class)).to eq 'development'
       end
     end
 
@@ -54,11 +52,11 @@ RSpec.describe Envlogic::Env do
       let(:env_value) { rand.to_s }
 
       before do
-        ENV[described_class::FALLBACK_ENV_KEY] = env_value
+        ENV['RACK_ENV'] = env_value
         envlogic_env
       end
 
-      after { ENV[described_class::FALLBACK_ENV_KEY] = nil }
+      after { ENV['RACK_ENV'] = nil }
 
       it 'expect to use it' do
         expect(envlogic_env.send(:initialize, test_class)).to eq env_value
@@ -80,6 +78,43 @@ RSpec.describe Envlogic::Env do
     end
   end
 
+  describe '#respond_to? with missing' do
+    context 'when we check for regular existing methods' do
+      %w[
+        chop
+        upcase!
+      ].each do |method_name|
+        it 'expect not to respond to those' do
+          expect(envlogic_env.respond_to?(method_name)).to eq true
+        end
+      end
+    end
+
+    context 'when we check for regular named non-existing methods' do
+      %w[
+        supermethod
+        extra_other
+      ].each do |method_name|
+        it 'expect not to respond to those' do
+          expect(envlogic_env.respond_to?(method_name)).to eq false
+        end
+      end
+    end
+
+    context 'when we check for questionmark environmentable methods' do
+      %w[
+        test?
+        production?
+        development?
+        unknown?
+      ].each do |method_name|
+        it 'expect not to respond to those' do
+          expect(envlogic_env.respond_to?(method_name)).to eq true
+        end
+      end
+    end
+  end
+
   describe '#app_dir_name' do
     it 'expect to get a basename from dirname' do
       expect(envlogic_env.send(:app_dir_name)).to eq 'envlogic'
@@ -93,6 +128,16 @@ RSpec.describe Envlogic::Env do
       before { envlogic_env.update(env) }
 
       it { expect(envlogic_env.public_send(:"#{env}?")).to eq true }
+    end
+  end
+
+  %w[
+    unknown
+    unset
+    invalid
+  ].each do |env|
+    context "environment: #{env}" do
+      it { expect(envlogic_env.public_send(:"#{env}?")).to eq false }
     end
   end
 end

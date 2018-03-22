@@ -3,13 +3,20 @@
 # Main module
 module Envlogic
   # Env module to get and set environment
-  class Env < ActiveSupport::StringInquirer
-    using StringRefinements
-
+  class Env < String
     # What environment key should be used by default
     FALLBACK_ENV_KEY = 'RACK_ENV'
     # What default environment should be asumed when there's nothing else
     FALLBACK_ENV = 'development'
+    # Postfix for ENV keys
+    ENV_KEY_POSTFIX = '_ENV'
+    # String inflecting engine
+    INFLECTOR = Dry::Inflector.new
+
+    private_constant :FALLBACK_ENV_KEY, :FALLBACK_ENV, :ENV_KEY_POSTFIX, :INFLECTOR
+
+    # It's just a string replace alias for the envlogic compatibility
+    alias update replace
 
     # @param klass [Class, Module] class/module for which we want to build a Envlogic::Env object
     # @return [Envlogic::Env] envlogic env object]
@@ -17,20 +24,26 @@ module Envlogic
     #   Envlogic::Env.new(User)
     # @note Will load appropriate environment automatically
     def initialize(klass)
-      env = ENV[app_dir_name.to_env_key]
-      env ||= ENV[klass.to_s.to_env_key]
+      env = ENV[to_env_key(app_dir_name)]
+      env ||= ENV[to_env_key(klass.to_s)]
       env ||= ENV[FALLBACK_ENV_KEY]
 
       update(env || FALLBACK_ENV)
     end
 
-    # @param environment [String] new environment that we want to set
-    # @example
-    #   env.update('production')
-    def update(environment)
-      replace(
-        ActiveSupport::StringInquirer.new(environment)
-      )
+    # @param method_name [String] method name
+    # @param include_private [Boolean] should we include private methods as well
+    # @return [Boolean] true if we respond to a given missing method, otherwise false
+    def respond_to_missing?(method_name, include_private = false)
+      (method_name[-1] == '?') || super
+    end
+
+    # Reacts to missing methods, from which some might be the env checkings.
+    # If the method ends with '?' we assume, that it is an env check
+    # @param method_name [String] method name for missing or env name with question mark
+    # @param arguments [Array] any arguments that we pass to the method
+    def method_missing(method_name, *arguments)
+      method_name[-1] == '?' ? self == method_name[0..-2] : super
     end
 
     private
@@ -44,6 +57,14 @@ module Envlogic
         .dirname
         .basename
         .to_s
+    end
+
+    # Converts any string into a bash ENV key
+    def to_env_key(string)
+      INFLECTOR
+        .underscore(string)
+        .tr('/', '_')
+        .upcase + ENV_KEY_POSTFIX
     end
   end
 end
