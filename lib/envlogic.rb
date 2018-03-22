@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 %w[
-  active_support/string_inquirer
   dry/inflector
   envlogic/version
   envlogic/env
