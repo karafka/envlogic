@@ -15,6 +15,9 @@ module Envlogic
 
     private_constant :FALLBACK_ENV_KEY, :FALLBACK_ENV, :ENV_KEY_POSTFIX, :INFLECTOR
 
+    # It's just a string replace alias for the envlogic compatibility
+    alias update replace
+
     # @param klass [Class, Module] class/module for which we want to build a Envlogic::Env object
     # @return [Envlogic::Env] envlogic env object]
     # @example
@@ -27,11 +30,6 @@ module Envlogic
 
       update(env || FALLBACK_ENV)
     end
-
-    # @param environment [String] new environment that we want to set
-    # @example
-    #   env.update('production')
-    alias update replace
 
     # @param method_name [String] method name
     # @param include_private [Boolean] should we include private methods as well
