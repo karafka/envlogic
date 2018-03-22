@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://github.com/karafka/envlogic'
   spec.license     = 'MIT'
 
-  spec.add_dependency 'dry-inflector', '>= 0.1.1'
+  spec.add_dependency 'dry-inflector', '~> 0.1'
   spec.required_ruby_version = '>= 2.2.0'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(spec)/}) }

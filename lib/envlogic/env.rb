@@ -31,9 +31,7 @@ module Envlogic
     # @param environment [String] new environment that we want to set
     # @example
     #   env.update('production')
-    def update(environment)
-      replace(environment)
-    end
+    alias update replace
 
     # @param method_name [String] method name
     # @param include_private [Boolean] should we include private methods as well

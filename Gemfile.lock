@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     envlogic (1.1.0)
-      dry-inflector (>= 0.1.1)
+      dry-inflector (~> 0.1)
 
 GEM
   remote: https://rubygems.org/
