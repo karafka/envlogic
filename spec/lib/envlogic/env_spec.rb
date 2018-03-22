@@ -79,7 +79,7 @@ RSpec.describe Envlogic::Env do
   end
 
   describe '#respond_to? with missing' do
-    context 'for regular existing methods' do
+    context 'when we check for regular existing methods' do
       %w[
         chop
         upcase!
@@ -90,7 +90,7 @@ RSpec.describe Envlogic::Env do
       end
     end
 
-    context 'for regular named non-xisting methods' do
+    context 'when we check for regular named non-existing methods' do
       %w[
         supermethod
         extra_other
@@ -101,7 +101,7 @@ RSpec.describe Envlogic::Env do
       end
     end
 
-    context 'for questionmark environmentable methods' do
+    context 'when we check for questionmark environmentable methods' do
       %w[
         test?
         production?
