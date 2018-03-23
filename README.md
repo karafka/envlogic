@@ -7,7 +7,7 @@ Envlogic is a library used to manage environments for your Ruby application in a
 
 ## Installation
 
-Add gem to your Gemfile
+Add the gem to your Gemfile
 ```ruby
   gem 'envlogic'
 ```
@@ -38,7 +38,7 @@ Once you extend your class/module with it, you will have two additional methods 
 
 #### Application root directory env key name
 
-By default gem is looking for ENV variable that is based on your application root directory.
+By default, the gem is looking for ENV variable that is based on your application root directory.
 
 For example, if your application lies in */home/deploy/my_app* it will look for **MY_APP_ENV** variable.
 
@@ -92,7 +92,7 @@ Basic::Karafka.env.development? # => true
 
 First, thank you for considering contributing to Envlogic! It's people like you that make the open source community such a great community!
 
-Each pull request must pass all the rspec specs and meet our quality requirements.
+Each pull request must pass all the RSpec specs and meet our quality requirements.
 
 To check if everything is as it should be, we use [Coditsu](https://coditsu.io) that combines multiple linters and code analyzers for both code and documentation. Once you're done with your changes, submit a pull request.
 
