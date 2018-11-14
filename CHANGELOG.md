@@ -1,5 +1,8 @@
 # Envlogic gem changelog
 
+## master
+- drop jruby support
+
 ## 1.1.0
 - Ruby 2.4.2 support
 - Ruby 2.5.0 support
