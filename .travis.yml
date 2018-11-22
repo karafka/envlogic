@@ -9,10 +9,6 @@ rvm:
   - 2.5.3
   - ruby-head
 
-env:
-  global:
-    - JRUBY_OPTS='--debug'
-
 before_install:
   - gem install bundler
   - gem update --system
