@@ -12,5 +12,8 @@ rvm:
 before_install:
   - gem install bundler
   - gem update --system
+  - docker create -v /sources --name sources alpine:3.4 /bin/true
+  - docker cp ./ sources:/sources
+  - docker run --volumes-from sources --network="host" coditsu/build-runner:latest
 
 script: bundle exec rspec
