@@ -3,7 +3,6 @@ services:
 
 dist: trusty
 sudo: false
-language: ruby
 cache: bundler
 
 git:
@@ -24,9 +23,11 @@ jobs:
         - docker cp ./ sources:/sources
       script: docker run --volumes-from sources --network="host" coditsu/build-runner:latest
     - stage: specs
-      rvm: 2.3.8
-      script: bundle exec rspec
+      language: ruby
+      rvm:
+        - 2.3.8
+        - 2.4.5
+        - 2.5.3
+        - ruby-head
 
-#- 2.4.5
-#- 2.5.3
-#- ruby-head
+      script: bundle exec rspec
