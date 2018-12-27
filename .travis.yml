@@ -9,10 +9,10 @@ git:
   depth: false
 
 rvm:
-  - 2.3.8
-  - 2.4.5
-  - 2.5.3
   - ruby-head
+  - 2.5.3
+  - 2.4.5
+  - 2.3.8
 
 jobs:
   include:
@@ -30,4 +30,5 @@ jobs:
       before_install:
         - gem install bundler
         - gem update --system
+
       script: bundle exec rspec
