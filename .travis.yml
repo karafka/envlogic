@@ -30,5 +30,4 @@ jobs:
       before_install:
         - gem install bundler
         - gem update --system
-
       script: bundle exec rspec
