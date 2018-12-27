@@ -25,7 +25,7 @@ jobs:
         - docker cp ./ sources:/sources
       script: docker run --volumes-from sources --network="host" coditsu/build-runner:latest
 
-    - stage: specs
+    - stage: test
       language: ruby
       before_install:
         - gem install bundler
