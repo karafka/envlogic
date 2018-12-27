@@ -31,3 +31,4 @@ jobs:
         - gem install bundler
         - gem update --system
       script: bundle exec rspec
+
