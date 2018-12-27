@@ -1,5 +1,7 @@
 # Envlogic gem changelog
 
+## test
+
 ## master
 - drop jruby support
 - drop ruby 2.2 support
