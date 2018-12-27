@@ -8,6 +8,12 @@ cache: bundler
 git:
   depth: false
 
+rvm:
+  - ruby-head
+  - 2.5.3
+  - 2.4.5
+  - 2.3.8
+
 jobs:
   include:
     - stage: coditsu
@@ -18,3 +24,10 @@ jobs:
         - docker create -v /sources --name sources alpine:3.4 /bin/true
         - docker cp ./ sources:/sources
       script: docker run --volumes-from sources --network="host" coditsu/build-runner:latest
+
+    - stage: specs
+      language: ruby
+      before_install:
+        - gem install bundler
+        - gem update --system
+      script: bundle exec rspec
