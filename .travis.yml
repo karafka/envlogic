@@ -10,8 +10,23 @@ cache: bundler
 git:
   depth: false
 
+test: &test
+  stage: Test
+  language: ruby
+  before_install:
+    - gem install bundler
+    - gem update --system
+  script: bundle exec rspec
+
 jobs:
   include:
+    - <<: *test
+      rvm:
+        - 2.5.3
+    - <<: *test
+      rvm:
+        - 2.6.0
+
     - stage: coditsu
       before_script:
         - docker create -v /sources --name sources alpine:3.4 /bin/true
@@ -23,17 +38,6 @@ jobs:
         -e CODITSU_REPOSITORY_ID
         --volumes-from sources
         coditsu/build-runner:latest
-
-    - stage: test
-      matrix:
-        include:
-          - rvm: 2.6.0
-          - rvm: 2.5.3
-
-      before_install:
-        - gem install bundler
-        - gem update --system
-      script: bundle exec rspec
 
 stages:
   - coditsu
