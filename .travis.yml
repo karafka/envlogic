@@ -22,10 +22,16 @@ jobs:
   include:
     - <<: *test
       rvm:
+        - 2.6.0
+    - <<: *test
+      rvm:
         - 2.5.3
     - <<: *test
       rvm:
-        - 2.6.0
+        - 2.4.5
+    - <<: *test
+      rvm:
+        - 2.3.8
 
     - stage: coditsu
       before_script:
