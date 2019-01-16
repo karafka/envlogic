@@ -28,13 +28,13 @@ jobs:
         --volumes-from sources
         coditsu/build-runner:latest
 
-    - stage: test1
+    - stage: test
       language: ruby
+      script: bundle exec rspec
       before_install:
         - gem install bundler
         - gem update --system
-      script: bundle exec rspec
 
 stages:
   - coditsu
-  - test1
+  - test
