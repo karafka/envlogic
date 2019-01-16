@@ -1,3 +1,5 @@
+language: ruby
+
 services:
   - docker
 
@@ -29,11 +31,15 @@ jobs:
         coditsu/build-runner:latest
 
     - stage: test
-      language: ruby
-      script: bundle exec rspec
+      matrix:
+        include:
+          - ruby: 2.6.0
+          - ruby: 2.5.3
+
       before_install:
         - gem install bundler
         - gem update --system
+      script: bundle exec rspec
 
 stages:
   - coditsu
