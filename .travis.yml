@@ -10,12 +10,6 @@ cache: bundler
 git:
   depth: false
 
-rvm:
-  - 2.6.0
-  - 2.5.3
-  - 2.4.5
-  - 2.3.8
-
 jobs:
   include:
     - stage: coditsu
@@ -31,10 +25,11 @@ jobs:
         coditsu/build-runner:latest
 
     - stage: test
-      matrix:
-        include:
-          - ruby: 2.6.0
-          - ruby: 2.5.3
+      rvm:
+        - 2.6.0
+        - 2.5.3
+        - 2.4.5
+        - 2.3.8
 
       before_install:
         - gem install bundler
