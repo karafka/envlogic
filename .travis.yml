@@ -8,6 +8,12 @@ cache: bundler
 git:
   depth: false
 
+rvm:
+  - 2.6.0
+  - 2.5.3
+  - 2.4.5
+  - 2.3.8
+
 jobs:
   include:
     - stage: coditsu
@@ -27,14 +33,7 @@ jobs:
       before_install:
         - gem install bundler
         - gem update --system
-
       script: bundle exec rspec
-
-rvm:
-  - 2.6.0
-  - 2.5.3
-  - 2.4.5
-  - 2.3.8
 
 stages:
   - coditsu
