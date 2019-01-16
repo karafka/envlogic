@@ -28,7 +28,7 @@ jobs:
         --volumes-from sources
         coditsu/build-runner:latest
 
-    - stage: test
+    - stage: test1
       language: ruby
       before_install:
         - gem install bundler
@@ -37,4 +37,4 @@ jobs:
 
 stages:
   - coditsu
-  - test
+  - test1
