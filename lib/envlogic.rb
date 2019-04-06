@@ -32,7 +32,7 @@ module Envlogic
     env.update(environment.to_s)
   end
 
-  # We alias this for backword compatibility with some code that uses full names
+  # We alias this for backward compatibility with some code that uses full names
   alias environment env
   alias environment= env=
 end

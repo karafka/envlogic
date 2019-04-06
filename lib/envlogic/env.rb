@@ -6,7 +6,7 @@ module Envlogic
   class Env < String
     # What environment key should be used by default
     FALLBACK_ENV_KEY = 'RACK_ENV'
-    # What default environment should be asumed when there's nothing else
+    # What default environment should be assumed when there's nothing else
     FALLBACK_ENV = 'development'
     # Postfix for ENV keys
     ENV_KEY_POSTFIX = '_ENV'
@@ -38,7 +38,7 @@ module Envlogic
       (method_name[-1] == '?') || super
     end
 
-    # Reacts to missing methods, from which some might be the env checkings.
+    # Reacts to missing methods, from which some might be the env checks.
     # If the method ends with '?' we assume, that it is an env check
     # @param method_name [String] method name for missing or env name with question mark
     # @param arguments [Array] any arguments that we pass to the method
