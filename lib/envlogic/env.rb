@@ -60,6 +60,8 @@ module Envlogic
     end
 
     # Converts any string into a bash ENV key
+    # @param string [String] string we want to convert into an env key
+    # @return [String] converted name that can be an ENV key
     def to_env_key(string)
       INFLECTOR
         .underscore(string)
