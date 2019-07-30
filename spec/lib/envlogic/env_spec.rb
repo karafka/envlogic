@@ -33,7 +33,7 @@ RSpec.describe Envlogic::Env do
     end
 
     context 'when class name env is set' do
-      let(:test_class) { ClassName = ClassBuilder.build }
+      let(:test_class) { stub_const('ClassName', ClassBuilder.build) }
       let(:env_value) { rand.to_s }
 
       before do
