@@ -4,6 +4,7 @@
 - drop jruby support
 - drop ruby 2.2 support
 - drop ruby 2.3 support
+- drop ruby 2.4 support
 - ruby 2.6.3 support
 
 ## 1.1.0
