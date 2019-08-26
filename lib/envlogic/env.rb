@@ -20,9 +20,9 @@ module Envlogic
 
     # @param klass [Class, Module] class/module for which we want to build a Envlogic::Env object
     # @return [Envlogic::Env] envlogic env object]
+    # @note Will load appropriate environment automatically
     # @example
     #   Envlogic::Env.new(User)
-    # @note Will load appropriate environment automatically
     def initialize(klass)
       env = ENV[to_env_key(app_dir_name)]
       env ||= ENV[to_env_key(klass.to_s)]
