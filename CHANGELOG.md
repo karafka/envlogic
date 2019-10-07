@@ -1,11 +1,11 @@
 # Envlogic gem changelog
 
-## master
+## Unreleased (master)
 - drop jruby support
-- drop ruby 2.2 support
-- drop ruby 2.3 support
-- drop ruby 2.4 support
-- ruby 2.6.3 support
+- drop Ruby 2.2 support
+- drop Ruby 2.3 support
+- drop Ruby 2.4 support
+- Ruby 2.6.5 support
 
 ## 1.1.0
 - Ruby 2.4.2 support
