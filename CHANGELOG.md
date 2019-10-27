@@ -18,7 +18,7 @@
 - Quality improvements
 - Gems cleanup
 - Ruby dump to 2.4.1
-- Better specs (less internal, more integrational)
+- Better specs (less internal, more integration)
 - License added to the gemspec file
 
 ## 1.0.3
