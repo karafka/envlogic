@@ -1,13 +1,11 @@
 name: ci
 
-"on":
+on:
   push:
     paths:
-      - "**"
-  pull_request:
-    branches:
-      - master
-  create:
+      - '**'
+  schedule:
+    - cron:  '0 1 * * *'
 
 jobs:
   specs:
