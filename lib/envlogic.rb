@@ -7,15 +7,27 @@
 ].each { |lib| require lib }
 
 # Main module that encapsulates logic that should be used to extend any class/module
-# @note This module should be extended into the class/module in which we want to have env support
+# @note This module should be extended/included into the class/module in which we want to have
+#   env support
+#
 # @example Use it in RandomClass class
 #   class RandomClass
 #     extend Envlogic
 #   end
 #
-# RandomClass.env #=> Envlogic::Env instance
-# RandomClass.env.production? #=> false
-# RandomClass.env.development? #=> true
+#   RandomClass.env #=> Envlogic::Env instance
+#   RandomClass.env.production? #=> false
+#   RandomClass.env.development? #=> true
+#
+# @example Use it for instances of objects
+#   class RandomClass
+#     incluide Envlogic
+#   end
+#
+#   instance = RandomClass.new
+#   instance.env #=> Envlogic::Env instance
+#   instance.env.production? #=> false
+#   instance.env.development? #=> true
 module Envlogic
   # @return [Envlogic::Env] envlogic env instance that allows us to check environment
   # @example Invoke env in TestClass

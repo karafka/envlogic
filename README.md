@@ -14,6 +14,8 @@ Add the gem to your Gemfile
 
 ## Usage
 
+### On a class/module level
+
 Extend your class or module in which you want to use this library with **Envlogic** module.
 
 ```ruby
@@ -32,6 +34,29 @@ Once you extend your class/module with it, you will have two additional methods 
   ExampleModule.env = 'development'
   ExampleModule.env.development? # => true
   ExampleModule.env.production? # => false
+```
+
+### On a per instance basis
+
+Include the **Envlogic** module in the class for which instances you want to use it.
+
+```ruby
+class ExampleClass
+  include Envlogic
+  # code of this class
+end
+```
+
+Once you include it in your class, you will have two additional methods (with two aliases):
+
+ - *.env* (.environment) - obtain current env and work with it
+ - *.env=* (.environment=) - set your own environment
+
+```ruby
+  instance = ExampleClass.new
+  instance.env = 'development'
+  instance.env.development? # => true
+  instance.env.production? # => false
 ```
 
 ### ENV variables key names and default fallbacks
