@@ -1,6 +1,6 @@
 # Envlogic
 
-[![Build Status](https://travis-ci.org/karafka/envlogic.svg)](https://travis-ci.org/karafka/envlogic)
+[![Build Status](https://github.com/karafka/envlogic/workflows/ci/badge.svg)](https://github.com/karafka/envlogic/actions?query=workflow%3Aci)
 [![Join the chat at https://gitter.im/karafka/karafka](https://badges.gitter.im/karafka/karafka.svg)](https://gitter.im/karafka/karafka?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Envlogic is a library used to manage environments for your Ruby application in a similar to Rails.env way.
@@ -13,6 +13,8 @@ Add the gem to your Gemfile
 ```
 
 ## Usage
+
+### On a class/module level
 
 Extend your class or module in which you want to use this library with **Envlogic** module.
 
@@ -32,6 +34,29 @@ Once you extend your class/module with it, you will have two additional methods 
   ExampleModule.env = 'development'
   ExampleModule.env.development? # => true
   ExampleModule.env.production? # => false
+```
+
+### On a per instance basis
+
+Include the **Envlogic** module in the class for which instances you want to use it.
+
+```ruby
+class ExampleClass
+  include Envlogic
+  # code of this class
+end
+```
+
+Once you include it in your class, you will have two additional methods (with two aliases):
+
+ - *.env* (.environment) - obtain current env and work with it
+ - *.env=* (.environment=) - set your own environment
+
+```ruby
+  instance = ExampleClass.new
+  instance.env = 'development'
+  instance.env.development? # => true
+  instance.env.production? # => false
 ```
 
 ### ENV variables key names and default fallbacks

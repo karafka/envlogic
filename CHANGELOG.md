@@ -6,7 +6,9 @@
 - drop Ruby 2.3 support
 - drop Ruby 2.4 support
 - Ruby 2.6.5 support
-- Ruby 2.7.0 support
+- Ruby 2.7.1 support
+- Replace travis with GH actions
+- Update docs to show per instance support
 
 ## 1.1.0
 - Ruby 2.4.2 support
