@@ -21,7 +21,7 @@
 #
 # @example Use it for instances of objects
 #   class RandomClass
-#     incluide Envlogic
+#     include Envlogic
 #   end
 #
 #   instance = RandomClass.new
