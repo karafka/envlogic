@@ -19,9 +19,6 @@ jobs:
           - "2.7"
           - "2.6"
           - "2.5"
-        include:
-          - ruby: "2.7"
-            coverage: "true"
     steps:
       - uses: actions/checkout@v1
       - name: Install package dependencies
@@ -38,3 +35,11 @@ jobs:
         run: bundle install --jobs 4 --retry 3
       - name: Run all tests
         run: bundle exec rspec
+  coditsu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run Coditsu
+        run: \curl -sSL https://api.coditsu.io/run/ci | bash
