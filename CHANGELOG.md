@@ -1,6 +1,6 @@
 # Envlogic gem changelog
 
-## Unreleased (master)
+## 1.1.1 (2020-04-22)
 - drop jruby support
 - drop Ruby 2.2 support
 - drop Ruby 2.3 support
@@ -9,6 +9,7 @@
 - Ruby 2.7.1 support
 - Replace travis with GH actions
 - Update docs to show per instance support
+- Support signing the releases
 
 ## 1.1.0
 - Ruby 2.4.2 support
