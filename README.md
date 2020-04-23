@@ -1,6 +1,6 @@
 # Envlogic
 
-[![Build Status](https://github.com/karafka/envlogic/workflows/ci/badge.svg)](https://github.com/karafka/envlogic/actions?query=workflow%3Aci)
+waterdrop
 [![Join the chat at https://gitter.im/karafka/karafka](https://badges.gitter.im/karafka/karafka.svg)](https://gitter.im/karafka/karafka?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Envlogic is a library used to manage environments for your Ruby application in a similar to Rails.env way.
@@ -110,7 +110,7 @@ Basic::Karafka.env.development? # => true
 ## References
 
 * [Karafka framework](https://github.com/karafka/karafka)
-* [Envlogic Travis CI](https://travis-ci.org/karafka/envlogic)
+* [Envlogic Actions CI](https://github.com/karafka/envlogic/actions?query=workflow%3Aci)
 * [Envlogic Coditsu](https://app.coditsu.io/karafka/repositories/envlogic)
 
 ## Note on contributions
