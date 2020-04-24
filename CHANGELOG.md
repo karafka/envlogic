@@ -1,5 +1,9 @@
 # Envlogic gem changelog
 
+## master
+- restore JRuby support
+- add TruffleRuby support
+
 ## 1.1.1 (2020-04-22)
 - drop jruby support
 - drop Ruby 2.2 support

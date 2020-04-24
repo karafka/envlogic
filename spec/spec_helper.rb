@@ -3,23 +3,26 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'rubygems'
-require 'simplecov'
-require 'rake'
-require 'securerandom'
+coverage = !ENV.key?('GITHUB_WORKFLOW')
+coverage = true if ENV['GITHUB_COVERAGE'] == 'true'
 
-# Don't include unnecessary stuff into rcov
-SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/vendor/'
-  add_filter '/gems/'
-  add_filter '/.bundle/'
-  add_filter '/doc/'
-  add_filter '/config/'
-  merge_timeout 600
+if coverage
+  require 'simplecov'
+
+  # Don't include unnecessary stuff into rcov
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter '/vendor/'
+    add_filter '/gems/'
+    add_filter '/.bundle/'
+    add_filter '/doc/'
+    add_filter '/config/'
+
+    merge_timeout 600
+    minimum_coverage 100
+    enable_coverage :branch
+  end
 end
-
-SimpleCov.minimum_coverage 100
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"]
   .sort
