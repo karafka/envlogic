@@ -1,8 +1,9 @@
 # Envlogic gem changelog
 
-## master
+## 1.1.2 (2020-04-24)
 - restore JRuby support
 - add TruffleRuby support
+- Change license to LGPL-3.0
 
 ## 1.1.1 (2020-04-22)
 - drop jruby support

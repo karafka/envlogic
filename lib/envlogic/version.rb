@@ -3,5 +3,5 @@
 # Main module to encapsulate logic
 module Envlogic
   # Current version of gem
-  VERSION = '1.1.1'
+  VERSION = '1.1.2'
 end
