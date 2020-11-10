@@ -24,6 +24,8 @@ module Envlogic
     # @example
     #   Envlogic::Env.new(User)
     def initialize(klass)
+      super('')
+
       env = ENV[to_env_key(app_dir_name)]
       env ||= ENV[to_env_key(klass.to_s)]
       env ||= ENV[FALLBACK_ENV_KEY]
