@@ -1,7 +1,8 @@
 # Envlogic
 
 [![Build Status](https://github.com/karafka/envlogic/workflows/ci/badge.svg)](https://github.com/karafka/envlogic/actions?query=workflow%3Aci)
-[![Join the chat at https://gitter.im/karafka/karafka](https://badges.gitter.im/karafka/karafka.svg)](https://gitter.im/karafka/karafka?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gem Version](https://badge.fury.io/rb/envlogic.svg)](http://badge.fury.io/rb/envlogic)
+[![Join the chat at https://gitter.im/karafka/karafka](https://badges.gitter.im/karafka/karafka.svg)](https://gitter.im/karafka/karafka)
 
 Envlogic is a library used to manage environments for your Ruby application in a similar to Rails.env way.
 
@@ -122,5 +123,3 @@ Each pull request must pass all the RSpec specs and meet our quality requirement
 To check if everything is as it should be, we use [Coditsu](https://coditsu.io) that combines multiple linters and code analyzers for both code and documentation. Once you're done with your changes, submit a pull request.
 
 Coditsu will automatically check your work against our quality standards. You can find your commit check results on the [builds page](https://app.coditsu.io/karafka/repositories/envlogic/builds/commit_builds) of Envlogic repository.
-
-[![coditsu](https://coditsu.io/assets/quality_bar.svg)](https://app.coditsu.io/karafka/repositories/envlogic/builds/commit_builds)
