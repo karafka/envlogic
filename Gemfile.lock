@@ -32,6 +32,7 @@ GEM
     simplecov_json_formatter (0.1.2)
 
 PLATFORMS
+  x86_64-darwin-19
   x86_64-linux
 
 DEPENDENCIES
@@ -41,4 +42,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   2.2.13
+   2.2.14
