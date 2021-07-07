@@ -1,5 +1,8 @@
 # Envlogic gem changelog
 
+## master
+- drop JRuby support because the latest version is based on Ruby 2.5
+
 ## 1.1.3 (2021-04-21)
 - Restore MIT license
 - Remove Ruby 2.5 support and update minimum Ruby requirement to 2.6
