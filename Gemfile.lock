@@ -10,7 +10,7 @@ GEM
     diff-lcs (1.4.4)
     docile (1.4.0)
     dry-inflector (0.2.1)
-    rake (13.0.4)
+    rake (13.0.6)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -32,8 +32,6 @@ GEM
     simplecov_json_formatter (0.1.3)
 
 PLATFORMS
-  x86_64-darwin
-  x86_64-darwin-19
   x86_64-linux
 
 DEPENDENCIES
@@ -43,4 +41,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   2.2.21
+   2.2.24
