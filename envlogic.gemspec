@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.email       = %w[pavlo.vavruk@gmail.com maciej@mensfeld.pl]
   spec.summary     = 'Library which allows to set and get environments values'
   spec.description = 'Library used to manage environments for your Ruby application'
-  spec.homepage    = 'https://github.com/karafka/envlogic'
+  spec.homepage    = 'https://karafka.io'
   spec.license     = 'MIT'
 
   spec.add_dependency 'dry-inflector', '~> 0.1'
