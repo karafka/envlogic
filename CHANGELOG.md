@@ -1,7 +1,8 @@
 # Envlogic gem changelog
 
-## master
+## 1.1.4 (2021-12-05)
 - drop JRuby support because the latest version is based on Ruby 2.5
+- Source code metadata url added to the gemspec
 
 ## 1.1.3 (2021-04-21)
 - Restore MIT license
