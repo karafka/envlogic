@@ -17,7 +17,8 @@ Gem::Specification.new do |spec|
   spec.license     = 'MIT'
 
   spec.add_dependency 'dry-inflector', '~> 0.1'
-  spec.required_ruby_version = '>= 2.5.0'
+
+  spec.required_ruby_version = '>= 2.7'
 
   if $PROGRAM_NAME.end_with?('gem')
     spec.signing_key = File.expand_path('~/.ssh/gem-private_key.pem')
