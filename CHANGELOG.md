@@ -1,8 +1,9 @@
 # Envlogic gem changelog
 
-## Unreleased
-- Support for Ruby 3.1.0
+## 1.1.5 (2022-04-17)
+- Support for Ruby 3.1
 - Drop support for ruby 2.6
+- Add `rubygems_mfa_required`
 
 ## 1.1.4 (2021-12-05)
 - drop JRuby support because the latest version is based on Ruby 2.5
