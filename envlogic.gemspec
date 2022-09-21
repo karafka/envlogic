@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://karafka.io'
   spec.license     = 'MIT'
 
-  spec.add_dependency 'dry-inflector', '~> 0.1'
+  spec.add_dependency 'dry-inflector', '~>0.1'
 
   spec.required_ruby_version = '>= 2.7'
 
