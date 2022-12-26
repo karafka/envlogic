@@ -1,4 +1,6 @@
-# Envlogic
+# Envlogic [Unmaintained]
+
+Note: This library is no longer in use in the Karafka ecosystem. It was developed for Karafka versions prior to 2.0.
 
 [![Build Status](https://github.com/karafka/envlogic/workflows/ci/badge.svg)](https://github.com/karafka/envlogic/actions?query=workflow%3Aci)
 [![Gem Version](https://badge.fury.io/rb/envlogic.svg)](http://badge.fury.io/rb/envlogic)
